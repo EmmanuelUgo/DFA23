@@ -12,7 +12,7 @@ WITH stg_crop AS (
         END)::string AS growth_stage,
         (CASE WHEN pest_issue = 'NA' THEN NULL ELSE pest_issue END)::string
             AS pest_issue
-    FROM dfa23rawdata.rawdata.cropdataraw
+    from {{ source('DFA23', 'CROPDATARAW') }}
 
 )
 

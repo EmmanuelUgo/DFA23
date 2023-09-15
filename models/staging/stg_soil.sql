@@ -40,7 +40,7 @@ WITH stg_soil AS (
                 15, 2
             )
         ) AS organic_matter
-    FROM dfa23rawdata.rawdata.soildataraw
+    from {{ source('DFA23', 'SOILDATARAW') }}
 )
 
 SELECT * FROM stg_soil

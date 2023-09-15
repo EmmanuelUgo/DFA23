@@ -22,7 +22,7 @@ WITH stg_location AS (
             WHEN region = 'NA' THEN NULL ELSE
                 region
         END)::string AS region
-    FROM dfa23rawdata.rawdata.locationdataraw
+    from {{ source('DFA23', 'LOCATIONDATARAW') }}
     WHERE sensor_id IS NOT NULL
 )
 

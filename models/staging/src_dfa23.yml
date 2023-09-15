@@ -1,0 +1,14 @@
+version: 2
+
+sources:
+  - name: DFA23
+    database: dfa23rawdata
+    schema: rawdata
+    tables:
+      - name: SENSORDATARAW
+      - name: WEATHERDATARAW
+      - name: SOILDATARAW
+      - name: CROPDATARAW
+      - name: PESTDATARAW
+      - name: IRRIGATIONDATARAW
+      - name: LOCATIONDATARAW

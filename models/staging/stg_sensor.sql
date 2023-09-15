@@ -29,7 +29,7 @@ WITH stg_sensor AS (
             END AS decimal(15, 2)
         ) AS battery_level
 
-    FROM dfa23rawdata.rawdata.sensordataraw
+    from {{ source('DFA23', 'SENSORDATARAW') }}
 
 )
 

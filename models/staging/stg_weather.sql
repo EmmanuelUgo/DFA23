@@ -19,7 +19,7 @@ WITH stg_weather AS (
                 15, 2
             )
         ) AS precipitation
-    FROM dfa23rawdata.rawdata.weatherdataraw
+    from {{ source('DFA23', 'WEATHERDATARAW') }}
 )
 
 SELECT * FROM stg_weather

@@ -13,7 +13,7 @@ WITH stg_irrigation AS (
             WHEN irrigation_duration_min = 'NA' THEN NULL ELSE
                 irrigation_duration_min
         END)::decimal(15, 2) AS irrigation_duration_min
-    FROM dfa23rawdata.rawdata.irrigationdataraw
+    from {{ source('DFA23', 'IRRIGATIONDATARAW') }}
 
 )
 
