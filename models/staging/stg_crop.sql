@@ -11,8 +11,9 @@ WITH stg_crop AS (
             WHEN growth_stage = 'NA' THEN NULL ELSE growth_stage
         END)::string AS growth_stage,
         (CASE WHEN pest_issue = 'NA' THEN NULL ELSE pest_issue END)::string
-            AS pest_issue
+            AS PEST_TYPE
     from {{ source('DFA23', 'CROPDATARAW') }}
+    where timestamp is not null
 
 )
 

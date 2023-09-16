@@ -2,6 +2,7 @@ WITH stg_irrigation AS (
 
     SELECT
         trim(regexp_substr(sensor_id, '_.+_'), '_')::string AS sensor_id,
+        replace(trim(sensor_id, '*'),'#','') as location_id,
         try_to_timestamp(timestamp::varchar, 'mm/dd/yyyy hh24:mi') AS timestamp,
         (CASE
             WHEN irrigation_method = 'NA' THEN NULL ELSE irrigation_method
@@ -15,6 +16,16 @@ WITH stg_irrigation AS (
         END)::decimal(15, 2) AS irrigation_duration_min
     from {{ source('DFA23', 'IRRIGATIONDATARAW') }}
 
+),
+stg_irrigation_final as (
+    SELECT 
+        sensor_id,
+        replace(location_id, sensor_id) as location_id,
+        TIMESTAMP,
+        IRRIGATION_METHOD,
+        WATER_SOURCE,
+        irrigation_duration_min
+    FROM stg_irrigation 
 )
 
-SELECT * FROM stg_irrigation
+SELECT * FROM stg_irrigation_final

@@ -20,6 +20,7 @@ WITH stg_weather AS (
             )
         ) AS precipitation
     from {{ source('DFA23', 'WEATHERDATARAW') }}
+    where timestamp is not null
 )
 
-SELECT * FROM stg_weather
+SELECT * FROM stg_weather 

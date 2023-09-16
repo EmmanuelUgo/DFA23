@@ -30,7 +30,8 @@ WITH stg_sensor AS (
         ) AS battery_level
 
     from {{ source('DFA23', 'SENSORDATARAW') }}
+    where sensor_id is not null
 
 )
 
-SELECT * FROM stg_sensor
+SELECT * FROM stg_sensor WHERE sensor_id = 'S380' ORDER BY TIMESTAMP
